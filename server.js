@@ -13,7 +13,7 @@ server.get('/test',(request,response)=>{ // the first parameter is always reques
 server.get('/wether',(req,res)=>{
 
     let wetherInfo = wether.city_name
-    
+
     
     
 //     let wetherInfo = wether.data.map(item=>{
@@ -23,13 +23,17 @@ server.get('/wether',(req,res)=>{
 //     })
     res.send(wetherInfo)
 })
-server.get('/wetherCast',(req,res)=>{
+// server.get('/wetherCast',(req,res)=>{
 
-    // let wetherInfo = wether.lon
+//     // let wetherInfo = wether.lon
 
-res.send(wether.lon)
-})
+// res.send(wether.lon)
+// })
 
 server.listen(PORT,()=>{
     console.log('test consloe') // this appers in terminal 
+})
+
+server.get('/',(req,res)=>{
+    res.send('home')
 })
