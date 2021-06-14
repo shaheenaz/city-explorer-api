@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require ('express') // like importing in react
 const server = express() // to use server so we can call all the functions inside the express
 const wether = require('./assets/wether.json')
