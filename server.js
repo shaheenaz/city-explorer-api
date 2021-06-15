@@ -6,7 +6,7 @@ const cors = require('cors')
 
 server.use(cors()) // to make the site availabe for evertone
 
-const PORT = 3001 // this is the local of the backend, i can put any number that differ from the front end
+const PORT = process.env.PORT || 3001 // this is the local of the backend, i can put any number that differ from the front end
 server.get('/test',(request,response)=>{ // the first parameter is always request and the second is always respons
     response.send('tset')
 })
