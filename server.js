@@ -3,8 +3,8 @@ const express = require ('express') // like importing in react
 const server = express() // to use server so we can call all the functions inside the express
 const wether = require('./assets/wether.json')
 const cors = require('cors')
-const axios = require('axios')
-const myKey = process.env.WEATHER_API_KEY
+// const axios = require('axios')
+// const myKey = process.env.WEATHER_API_KEY
 server.use(cors()) // to make the site availabe for evertone
 
 const PORT = process.env.PORT || 3001 // this is the local of the backend, i can put any number that differ from the front end
@@ -15,6 +15,20 @@ server.get('/',test)// the first parameter is always request and the second is a
  function test(req,res){
      res.send("home")
  }
+ server.listen(PORT,()=>{
+    console.log('test consloe') // this appers in terminal 
+})
+
+server.get('/',(req,res)=>{
+    res.send('home')
+})
+
+
+// const wettherFunction = require('./modules/wether')
+const wetherFunction = require('./modules/wether')
+const movieFunction = require('./modules/movies')
+server.get('/wether',wetherFunction)
+server.get('/movies',movieFunction)
 
 
 
@@ -61,37 +75,35 @@ server.get('/',test)// the first parameter is always request and the second is a
     // res.send(wetherInfo)
 
 //localhost:3001/wethercast?searchQuery=sydney
-server.get('/wether',(req,res)=>{
+// server.get('/wether',(req,res)=>{
 
-let wetherInfo = wether.map(item=>{
-    return item.city_name
-})
-res.send(wetherInfo)
-})
- //localhost:3001/wetherForCast?searchQuery=sydney
-server.get('/wetherForCast',(req,res)=>{
-    let rchQuery = req.query.searchQuery
-    let info = wether.find(item=>{
-        if(item.city_name == rchQuery)
-        return item.data
-    })
-    res.send(info)
-})
-
+// let wetherInfo = wether.map(item=>{
+//     return item.city_name
+// })
+// res.send(wetherInfo)
+// })
+//  //localhost:3001/wetherForCast?searchQuery=sydney
+// server.get('/wetherForCast',(req,res)=>{
+//     let rchQuery = req.query.searchQuery
+//     let info = wether.find(item=>
+//         item.city_name == rchQuery)
+//         if(info!=undefined){
+//             let array = info.data.map(day => new Forecast(day))
+      
+    
+//     res.send(array)
+//  } })
 
 
 // res.send(wetherInfo)
 
 
-server.listen(PORT,()=>{
-    console.log('test consloe') // this appers in terminal 
-})
-
-server.get('/',(req,res)=>{
-    res.send('home')
-})
 
 
+// function Forecast(day) {
+//     this.date = day.valid_date
+//     this.description = day.weather.description
+// }
 
 
 //lab 8
