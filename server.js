@@ -24,11 +24,13 @@ server.get('/',(req,res)=>{
 })
 
 
-// const wettherFunction = require('./modules/wether')
-const wetherFunction = require('./modules/wether')
+
 const movieFunction = require('./modules/movies')
+const wetherFunction = require('./modules/wether')
 server.get('/wether',wetherFunction)
+// localhost:3001/wethe?city=sydney
 server.get('/movies',movieFunction)
+// localhost:3001/movies?query=sydney
 
 
 
