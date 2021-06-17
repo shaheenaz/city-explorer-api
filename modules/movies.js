@@ -1,6 +1,17 @@
-const axios = require ('axios')
+const axios = require ('axios');
+const request = require('superagent');
 let myKey = process.env.MOVIE_KEY
+
+let memory = {};
+
 async function movieFunction (req,res){
+let moviestorage = req.query.query
+
+if(memory[moviestorage] !== undefined){
+    console.log('old')
+    res.send(memory[moviestorage])
+}
+else {
     let searchQuery = req.query.query
     // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
@@ -21,6 +32,8 @@ async function movieFunction (req,res){
     let movieDeat = movieInfo.data.results.map(item => {
     return new MovieFunc(item);
      })
+     memory[moviestorage] =movieDeat;
+     console.log('new');
         res.send(movieDeat);
     })
     .catch(error => {
@@ -42,6 +55,9 @@ async function movieFunction (req,res){
 // res.send(movieDeat)
 }
 
+}
+
+    
 class MovieFunc{
 constructor(item){
     this.title = item.original_title;
